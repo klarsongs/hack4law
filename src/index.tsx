@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 import App from './App';
 import { AxiosInterceptor } from 'providers/AxiosInterceptor';
+import './styles.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
