@@ -7,11 +7,11 @@ import {
   Container,
   InfoBox,
   InformationBottom,
-  Label,
   StyledButton,
   StyledIllustration,
 } from './styled';
 import { Input } from 'components/Input';
+import { Label } from 'components/Label';
 
 interface IFormInput {
   slug: string;

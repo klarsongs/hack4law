@@ -39,11 +39,6 @@ export const Title = styled.div`
   width: 100%;
 `;
 
-export const Label = styled.span`
-  font-size: 16px;
-  margin-bottom: 8px;
-`;
-
 export const FormContainer = styled.form`
   display: flex;
   flex-firection: column;
