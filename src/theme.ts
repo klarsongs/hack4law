@@ -7,5 +7,6 @@ export const theme = {
     paleGrayBg: '#F1F4F4',
     black: '#000000',
     white: '#ffffff',
+    grayMedium: '#6F6F6F',
   },
 };

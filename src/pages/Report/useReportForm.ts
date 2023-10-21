@@ -1,11 +1,14 @@
+import { Category, Subcategory } from 'api/resources/types';
 import { useState, Dispatch, SetStateAction, useEffect } from 'react';
 
 export interface ReportFormFields {
-  category: string;
-  subcategory: string;
+  category: Category | null;
+  subcategory: Subcategory | null;
   firstName: string;
   lastName: string;
+  description: string;
   localization: string;
+  personInvolved: string;
   date: Date;
   source: string;
   hasBeenAlreadyReported: boolean;
@@ -26,11 +29,13 @@ export type View = 'category' | 'subcategory' | 'reportForm';
 export const useReportForm = (): ReportFormContextType => {
   const [currentView, setCurrentView] = useState<View>('category');
   const [formState, setFormState] = useState<ReportFormFields>({
-    category: '',
-    subcategory: '',
+    category: null,
+    subcategory: null,
     firstName: '',
     lastName: '',
+    description: '',
     localization: '',
+    personInvolved: '',
     date: new Date(),
     source: '',
     hasBeenAlreadyReported: false,

@@ -1,18 +1,25 @@
 import { useReportFormContext } from 'pages/Report/ReportFormContext';
 import { CategoriesList } from 'pages/Report/components/CategoriesList';
-import { ReactComponent as OpenReportIcon } from '../../../../assets/openReportIcon.svg';
-import { ReactComponent as ArrowLeftIcon } from '../../../../assets/arrowLeftIcon.svg';
-import { Button } from '../../../../components/Button';
-import { Typography } from '../../../../components/Typography';
+import { ReactComponent as OpenReportIcon } from 'assets/openReportIcon.svg';
+import { ReactComponent as ArrowLeftIcon } from 'assets/arrowLeftIcon.svg';
+import { Button } from 'components/Button';
+import { Typography } from 'components/Typography';
 import { TitleContainer } from './styled';
 import { Box } from 'components/Box';
+import { Subcategory } from 'api/resources/types';
 
 export const SubcategoryView = () => {
-  const { formState, setFormState, goToPreviousView } = useReportFormContext();
+  const { formState, setFormState, goToPreviousView, goToNextView } =
+    useReportFormContext();
 
-  const handleSubcategoryClick = (subcategoryId: string) => {
-    setFormState({ ...formState, subcategory: subcategoryId });
+  const handleSubcategoryClick = (subcategory: Subcategory) => {
+    setFormState({ ...formState, subcategory });
+    goToNextView();
   };
+
+  if (!formState.category) {
+    throw new Error('SubcategoryView: category is not defined');
+  }
 
   return (
     <>
@@ -22,7 +29,7 @@ export const SubcategoryView = () => {
       <TitleContainer>
         <Typography.Title level={1}>Zgłoś sprawę</Typography.Title>
         <Box
-          title='Mobbing'
+          title={formState.category.title}
           label='WYBRANA KATEGORIA'
           icon={<OpenReportIcon />}
           button={
@@ -35,9 +42,8 @@ export const SubcategoryView = () => {
       </TitleContainer>
       <Typography.Title level={2}>Wybierz podkategorię sprawy</Typography.Title>
       <CategoriesList
-        categories={[]}
+        categories={formState.category.subcategories}
         onCategoryClick={handleSubcategoryClick}
-        selectedSubcategoryId={formState.subcategory}
       />
     </>
   );

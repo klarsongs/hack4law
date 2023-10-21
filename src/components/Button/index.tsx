@@ -32,7 +32,7 @@ export const Button = styled(AntButton)`
       && {
         color: ${({ theme }) => theme.colors.primary};
         background: ${({ theme }) =>
-          color(theme.colors.pale).lighten(0.08).toString()};
+          color(theme.colors.pale).lighten(0.15).toString()};
       }
     }
   }

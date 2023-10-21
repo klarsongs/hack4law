@@ -1,23 +1,25 @@
 import { List } from 'antd';
-import { ReactComponent as OpenReportIcon } from '../../../../assets/openReportIcon.svg';
-import { ReactComponent as ArrowRightIcon } from '../../../../assets/arrowRightIcon.svg';
-import { Category } from '../../views/CategoryView';
+import { ReactComponent as OpenReportIcon } from 'assets/openReportIcon.svg';
+import { ReactComponent as ArrowRightIcon } from 'assets/arrowRightIcon.svg';
+import { Typography } from 'components/Typography';
+import { Category, Subcategory } from 'api/resources/types';
 import { CategoryContainer, CategoryOuterContainer } from './styled';
-import { Typography } from '../../../../components/Typography';
 
-interface Props {
-  categories: Category[];
-  onCategoryClick: (categoryId: string) => void;
-  selectedSubcategoryId: string;
+interface Props<T> {
+  categories: T[];
+  onCategoryClick: (category: T) => void;
 }
 
-export const CategoriesList = ({ categories, onCategoryClick }: Props) => {
+export const CategoriesList = <T extends Category | Subcategory>({
+  categories,
+  onCategoryClick,
+}: Props<T>) => {
   return (
     <List
       dataSource={categories}
       renderItem={(category) => (
         <List.Item>
-          <CategoryOuterContainer onClick={() => onCategoryClick(category.id)}>
+          <CategoryOuterContainer onClick={() => onCategoryClick(category)}>
             <OpenReportIcon />
             <CategoryContainer>
               <Typography.Title level={3}>{category.title}</Typography.Title>

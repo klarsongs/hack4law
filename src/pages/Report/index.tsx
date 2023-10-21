@@ -2,6 +2,7 @@ import { ReportFormProvider, useReportFormContext } from './ReportFormContext';
 import { CategoryView } from './views/CategoryView';
 import { SubcategoryView } from './views/SubcategoryView';
 import { Layout } from '../../components/Layout';
+import { ReportFormView } from './views/ReportFormView';
 
 export const ReportPage = () => {
   return (
@@ -20,6 +21,8 @@ const PageContent = () => {
         return <CategoryView />;
       case 'subcategory':
         return <SubcategoryView />;
+      case 'reportForm':
+        return <ReportFormView />;
       default:
         return <div>view not yet implemented: {currentView}</div>;
     }

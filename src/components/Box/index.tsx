@@ -27,7 +27,11 @@ export const Box = ({
         <Typography.Title level={3} style={{ margin: 0 }}>
           {title}
         </Typography.Title>
-        {description && <Typography.Text>{description}</Typography.Text>}
+        {description && (
+          <Typography.Text style={{ fontWeight: 300 }}>
+            {description}
+          </Typography.Text>
+        )}
       </div>
       {button}
     </BoxContainer>
