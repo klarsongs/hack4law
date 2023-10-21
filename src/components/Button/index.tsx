@@ -3,8 +3,9 @@ import color from 'color';
 import { Button as AntButton } from 'antd';
 
 export const Button = styled(AntButton)`
-  font-size: 18px;
+  font-size: 16px;
   padding: 16px 24px;
+  font-weight: 500;
   height: min-content;
   display: flex;
   align-items: center;
