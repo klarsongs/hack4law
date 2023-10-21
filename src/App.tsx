@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { HomePage } from './pages/Home';
 import { ReportPage } from './pages/Report';
 import { CheckReportPage } from './pages/CheckReport';
+import { ChooseActionPage } from './pages/ChooseAction';
 import { theme } from './theme';
 
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: '/sprawdz-raport/:id',
     element: <CheckReportPage />,
+  },
+  {
+    path: '/wybierz-akcje',
+    element: <ChooseActionPage />,
   },
   {
     path: '*',

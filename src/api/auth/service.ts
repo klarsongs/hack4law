@@ -10,7 +10,7 @@ export const useAuthorizationService = () => {
   const useVerify = () =>
     useMutation<{}, string, TVerifyRequest>(verifyRequest, {
       onSuccess: () => {
-        navigate('/', { replace: true });
+        navigate('/wybierz-akcje', { replace: true });
       },
       onError: () => {
         toast('Wystąpił problem podczas weryfikowania klucza');
