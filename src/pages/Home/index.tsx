@@ -1,8 +1,6 @@
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { Button, Form, Input, Space } from 'antd';
 import { useAuthorizationService } from 'api/auth/service';
-import { TokenManager } from 'utils/TokenManager';
-import { useEffect } from 'react';
 
 interface IFormInput {
   slug: string;

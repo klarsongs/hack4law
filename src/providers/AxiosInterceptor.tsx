@@ -1,5 +1,5 @@
 import { ReactNode, useLayoutEffect } from 'react';
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { client } from 'utils/request';
 
 import { TokenManager } from 'utils/TokenManager';
