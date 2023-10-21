@@ -1,5 +1,5 @@
 import { ReactNode, useLayoutEffect } from 'react';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { client } from 'utils/request';
 
 import { TokenManager } from 'utils/TokenManager';
@@ -7,6 +7,11 @@ import { TokenManager } from 'utils/TokenManager';
 type Props = { children: ReactNode };
 
 export const AxiosInterceptor = ({ children }: Props): JSX.Element => {
+  const requestInterceptor = (config: InternalAxiosRequestConfig<any>) => {
+    TokenManager.setConfigHeadersWithToken(config);
+    return config;
+  };
+
   const responseInterceptor = (response: AxiosResponse) => {
     TokenManager.updateTokenFromResponse(response);
     return response;
@@ -26,7 +31,7 @@ export const AxiosInterceptor = ({ children }: Props): JSX.Element => {
 
   const addInterceptors = () => {
     const requestInterceptorInstance = client.interceptors.request.use(
-      (config) => config,
+      requestInterceptor,
       undefined,
     );
 
