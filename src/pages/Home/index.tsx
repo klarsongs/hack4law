@@ -1,16 +1,52 @@
-import { Button, Row } from 'antd';
-import { Link } from 'react-router-dom';
-import { StyledCol } from './styled';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { Button, Form, Input, Space } from 'antd';
+import { useAuthorizationService } from 'api/auth/service';
+import { TokenManager } from 'utils/TokenManager';
+import { useEffect } from 'react';
+
+interface IFormInput {
+  slug: string;
+  key: string;
+}
 
 export const HomePage = () => {
+  const { useVerify } = useAuthorizationService();
+  const { mutate: verify } = useVerify();
+
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      slug: '',
+      key: '',
+    },
+  });
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    verify(data);
+  };
+
   return (
-    <Row justify='center'>
-      <StyledCol span={12}>Obrazek tada</StyledCol>
-      <StyledCol span={12}>
-        <Link to='/organizacja'>
-          <Button type='primary'>Wejdź</Button>
-        </Link>
-      </StyledCol>
-    </Row>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Space direction='vertical'>
+        <Controller
+          name='slug'
+          control={control}
+          render={({ field }) => (
+            <Input placeholder='Januszex (slug)' {...field} />
+          )}
+        />
+        <Controller
+          name='key'
+          control={control}
+          render={({ field }) => (
+            <Input placeholder='tem-key (key)' {...field} />
+          )}
+        />
+        <Form.Item>
+          <Button type='primary' htmlType='submit'>
+            Submit
+          </Button>
+        </Form.Item>
+      </Space>
+    </form>
   );
 };

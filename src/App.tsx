@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { HomePage } from './pages/Home';
-import { OrganizationPage } from './pages/Organization';
 import { ReportPage } from './pages/Report';
 import { CheckReportPage } from './pages/CheckReport';
 
@@ -8,10 +10,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
-  },
-  {
-    path: '/organizacja',
-    element: <OrganizationPage />,
   },
   {
     path: '/sygnalizuj',
@@ -28,7 +26,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </>
+  );
 }
 
 export default App;
