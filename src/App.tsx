@@ -7,6 +7,7 @@ import { ReportPage } from './pages/Report';
 import { CheckReportPage } from './pages/CheckReport';
 import { ChooseActionPage } from './pages/ChooseAction';
 import { theme } from './theme';
+import { EnterReportPage } from 'pages/EnterReport';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/sprawdz-raport',
-    element: <CheckReportPage />,
+    element: <EnterReportPage />,
   },
   {
     path: '/sprawdz-raport/:id',

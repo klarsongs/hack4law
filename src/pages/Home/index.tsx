@@ -89,6 +89,7 @@ export const HomePage = () => {
               control={control}
               render={({ field }) => (
                 <Input
+                  isBig
                   placeholder='Identyfikator'
                   {...field}
                   style={{ marginBottom: 24, width: 508 }}
@@ -142,7 +143,9 @@ export const HomePage = () => {
             <Controller
               name='key'
               control={control}
-              render={({ field }) => <Input placeholder='Token' {...field} />}
+              render={({ field }) => (
+                <Input isBig placeholder='Token' {...field} />
+              )}
             />
             <Form.Item style={{ marginTop: 24 }}>
               <StyledButton type='primary' htmlType='submit'>
