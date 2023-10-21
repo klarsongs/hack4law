@@ -7,6 +7,7 @@ export const client = axios.create({
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
     'Key-Inflection': 'camel',
+    'ngrok-skip-browser-warning': 'true',
   },
 });
 
