@@ -6,6 +6,9 @@ export const Button = styled(AntButton)`
   font-size: 18px;
   padding: 16px 24px;
   height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &.ant-btn-primary {
     background: ${({ theme }) => theme.colors.primary};

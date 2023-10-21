@@ -15,6 +15,11 @@ export const CategoryOuterContainer = styled.div`
     max-width: 32px;
     max-height: 32px;
   }
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.pale};
+    cursor: pointer;
+  }
 `;
 
 export const CategoryContainer = styled.div`
