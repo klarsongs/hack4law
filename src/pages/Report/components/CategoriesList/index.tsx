@@ -1,9 +1,9 @@
 import { List } from 'antd';
-import { ReactComponent as OpenReportIcon } from '../../../../../../assets/openReportIcon.svg';
-import { ReactComponent as ArrowRightIcon } from '../../../../../../assets/arrowRightIcon.svg';
-import { Category } from '../..';
+import { ReactComponent as OpenReportIcon } from '../../../../assets/openReportIcon.svg';
+import { ReactComponent as ArrowRightIcon } from '../../../../assets/arrowRightIcon.svg';
+import { Category } from '../../views/CategoryView';
 import { CategoryContainer, CategoryOuterContainer } from './styled';
-import { Typography } from '../../../../../../components/Typography';
+import { Typography } from '../../../../components/Typography';
 
 interface Props {
   categories: Category[];

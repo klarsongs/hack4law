@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../../components/Button';
-import { useReportForm } from '../../useReportForm';
 import { Typography } from '../../../../components/Typography';
-import { CategoriesList } from './components/CategoriesList';
+import { CategoriesList } from '../../components/CategoriesList';
 import { ReactComponent as ArrowLeftIcon } from '../../../../assets/arrowLeftIcon.svg';
+import { useReportFormContext } from 'pages/Report/ReportFormContext';
 
 export interface Category {
   id: string;
@@ -17,7 +18,7 @@ interface Subcategory {
   description: string;
 }
 
-const categoriesData: Category[] = [
+export const categoriesData: Category[] = [
   {
     id: 'id-kategorii',
     title: 'Kategoria 1',
@@ -45,7 +46,8 @@ const categoriesData: Category[] = [
 ];
 
 export const CategoryView = () => {
-  const { formState, setFormState, goToNextView } = useReportForm();
+  const navigate = useNavigate();
+  const { formState, setFormState, goToNextView } = useReportFormContext();
 
   const handleCategoryClick = (categoryId: string) => {
     setFormState({ ...formState, category: categoryId });
@@ -54,7 +56,11 @@ export const CategoryView = () => {
 
   return (
     <>
-      <Button type='text' icon={<ArrowLeftIcon />}>
+      <Button
+        type='text'
+        icon={<ArrowLeftIcon />}
+        onClick={() => navigate('/')}
+      >
         Powrót
       </Button>
       <Typography.Title level={1}>Zgłoś sprawę</Typography.Title>

@@ -23,6 +23,7 @@ h2.ant-typography {
 h3.ant-typography {
   font-size: 20px;
   line-height: 30px;
+  font-weight: 400;
 }
 
 span.ant-typography {

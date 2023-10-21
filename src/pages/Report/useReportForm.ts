@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from 'react';
+import { useState, Dispatch, SetStateAction, useEffect } from 'react';
 
 export interface ReportFormFields {
   category: string;
@@ -16,11 +16,12 @@ export interface ReportFormContextType {
   formState: ReportFormFields;
   setFormState: Dispatch<SetStateAction<ReportFormFields>>;
   currentView: View;
+  setCurrentView: Dispatch<SetStateAction<View>>;
   goToNextView: () => void;
   goToPreviousView: () => void;
 }
 
-export type View = 'category' | 'categoryInfo' | 'reportForm';
+export type View = 'category' | 'subcategory' | 'reportForm';
 
 export const useReportForm = (): ReportFormContextType => {
   const [currentView, setCurrentView] = useState<View>('category');
@@ -36,20 +37,30 @@ export const useReportForm = (): ReportFormContextType => {
     frequency: '',
   });
 
+  useEffect(() => {
+    console.log('current view changed:', currentView);
+  }, [currentView]);
+
   const goToNextView = () => {
-    if (currentView === 'category') {
-      setCurrentView('categoryInfo');
-    } else if (currentView === 'categoryInfo') {
-      setCurrentView('reportForm');
-    }
+    setCurrentView((current) => {
+      if (current === 'category') {
+        return 'subcategory';
+      } else if (current === 'subcategory') {
+        return 'reportForm';
+      }
+      return current;
+    });
   };
 
   const goToPreviousView = () => {
-    if (currentView === 'reportForm') {
-      setCurrentView('categoryInfo');
-    } else if (currentView === 'categoryInfo') {
-      setCurrentView('category');
-    }
+    setCurrentView((current) => {
+      if (current === 'subcategory') {
+        return 'category';
+      } else if (current === 'reportForm') {
+        return 'subcategory';
+      }
+      return current;
+    });
   };
 
   return {
@@ -58,5 +69,6 @@ export const useReportForm = (): ReportFormContextType => {
     currentView,
     goToNextView,
     goToPreviousView,
+    setCurrentView,
   };
 };
