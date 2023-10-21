@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 export const Alert = styled(AntAlert)`
   border: none;
   border-radius: 12px;
+  color: ${({ theme }) => theme.colors.dark};
 
   > .ant-alert-content {
     color: ${({ theme }) => theme.colors.dark};

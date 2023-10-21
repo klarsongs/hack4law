@@ -37,7 +37,7 @@ export const CategoryView = () => {
       <Button
         type='text'
         icon={<ArrowLeftIcon />}
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/wybierz-akcje')}
       >
         Powrót
       </Button>

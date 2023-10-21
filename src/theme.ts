@@ -8,5 +8,6 @@ export const theme = {
     black: '#000000',
     white: '#ffffff',
     grayMedium: '#6F6F6F',
+    paleHover: '#E3EDED',
   },
 };

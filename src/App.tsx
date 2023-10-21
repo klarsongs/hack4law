@@ -18,6 +18,10 @@ const router = createBrowserRouter([
     element: <ReportPage />,
   },
   {
+    path: '/sprawdz-raport',
+    element: <CheckReportPage />,
+  },
+  {
     path: '/sprawdz-raport/:id',
     element: <CheckReportPage />,
   },
