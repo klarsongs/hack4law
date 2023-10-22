@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Alert } from 'components/Alert';
 import { Layout } from 'components/Layout';
 import { OrganizationLogo } from 'components/OrganizationLogo';
-import { ReactComponent as InfoIcon } from 'assets/infoIcon.svg';
+import { ReactComponent as LockIcon } from 'assets/lockIcon.svg';
 import { ActionBox, AlertContainer, Box } from './styled';
 import { Button } from 'components/Button';
 import { ReactComponent as ArrowLeftIcon } from 'assets/arrowLeftIcon.svg';
@@ -33,16 +33,12 @@ export const ChooseActionPage = () => {
         style={{ padding: 16 }}
         message={
           <AlertContainer>
-            <InfoIcon />
+            <LockIcon width={30} />
             <div>
-              <Typography.Text
-                style={{ fontSize: 20, fontWeight: 500, marginBottom: 8 }}
-              >
-                Alert
-              </Typography.Text>
-              <Typography.Text style={{ fontSize: 16 }}>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit lorem
-                ipsum.
+              <Typography.Text style={{ fontSize: 14 }}>
+                Twoje bezpieczeństwo i anonimowość są dla nas priorytetem w
+                Aplikacji ZIGNAL. Zgłaszaj sprawy pewne i w dobrej wierze,
+                wiedząc, że Twój głos jest zawsze chroniony.
               </Typography.Text>
             </div>
           </AlertContainer>
