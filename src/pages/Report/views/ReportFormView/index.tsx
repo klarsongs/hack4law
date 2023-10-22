@@ -106,7 +106,7 @@ export const ReportFormView = () => {
                 <AsteriskIcon style={{ color: 'red' }} /> Imię
               </Label.Text>
               <Input
-                value={formState.description}
+                value={formState.firstName}
                 onChange={(e) =>
                   setFormState((state) => ({
                     ...state,
@@ -123,7 +123,7 @@ export const ReportFormView = () => {
                 <AsteriskIcon style={{ color: 'red' }} /> Nazwisko
               </Label.Text>
               <Input
-                value={formState.description}
+                value={formState.lastName}
                 onChange={(e) =>
                   setFormState((state) => ({
                     ...state,
@@ -164,7 +164,10 @@ export const ReportFormView = () => {
             popupStyle={{ color: 'red' }}
             style={{ width: '100%' }}
             onChange={(date) =>
-              setFormState((state) => ({ ...state, date: date?.toISOString() }))
+              setFormState((state) => ({
+                ...state,
+                occurence: date!.toISOString(),
+              }))
             }
           />
         </InputWrapper>
@@ -248,7 +251,13 @@ export const ReportFormView = () => {
 
         <InputWrapper>
           <Label.Text>Jaka relacja łączy cię z pracodawcą?</Label.Text>
-          <Select options={employerRelationshipOptions} placeholder='Relacja' />
+          <Select
+            options={employerRelationshipOptions}
+            placeholder='Relacja'
+            onChange={(val) => {
+              setFormState({ ...formState, relationship: val });
+            }}
+          />
         </InputWrapper>
 
         <InputWrapper>

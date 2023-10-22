@@ -58,7 +58,7 @@ export const ReportSummary = ({ report }: { report: Report }) => {
             Data zgłoszenia
           </Typography.Text>
           <Typography.Text style={{ fontSize: 16 }}>
-            {report.occurrence.slice(0, 10)}
+            {report.occurrence ? report.occurrence : 'Nieznana'}
           </Typography.Text>
         </TextGridItem>
         <TextGridItem>

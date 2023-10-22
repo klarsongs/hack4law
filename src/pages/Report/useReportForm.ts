@@ -16,14 +16,15 @@ export interface ReportFormFields {
   sourceOfTruth: string;
   hasBeenAlreadyReported: boolean;
   additionalInformation: string;
+  relationship: string;
   files: UploadFile[];
 }
 
 export interface ReportSubmitForm {
-  occurence: string;
+  occurrence: string;
   description: string;
   relation_with_the_company?: string;
-  person_involved: string; // INFORMACJE O PODMIOCIE NARUSZENIA
+  person_involved?: string; // INFORMACJE O PODMIOCIE NARUSZENIA
   full_name?: string; // IMIE I NAZWISKO OSOBY ZGŁASZAJĄCEJ
   localization: string;
   source_of_truth?: string; // XD
@@ -59,6 +60,7 @@ export const useReportForm = (): ReportFormContextType => {
     sourceOfTruth: '',
     hasBeenAlreadyReported: false,
     additionalInformation: '',
+    relationship: '',
     files: [],
   });
 
@@ -124,12 +126,14 @@ export const useReportForm = (): ReportFormContextType => {
 
   const getReportSubmitForm = (): ReportSubmitForm => {
     return {
-      occurence: formState.occurence,
+      occurrence: formState.occurence,
       description: formState.description,
-      person_involved: `${formState.firstName} ${formState.lastName}`,
       localization: formState.localization,
       already_reported: formState.hasBeenAlreadyReported,
       category_id: formState.subcategory!.id,
+      ...(formState.personInvolved && {
+        person_involved: formState.personInvolved,
+      }),
       ...(formState.firstName && {
         full_name: `${formState.firstName} ${formState.lastName}`,
       }),
@@ -140,7 +144,10 @@ export const useReportForm = (): ReportFormContextType => {
         source_of_truth: formState.sourceOfTruth,
       }),
       ...(formState.personInvolved && {
-        relation_with_the_company: formState.personInvolved,
+        person_involved: formState.personInvolved,
+      }),
+      ...(formState.relationship && {
+        relation_with_the_company: formState.relationship,
       }),
     };
   };
