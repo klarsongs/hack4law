@@ -7,6 +7,8 @@ import { useReportForm } from './useReportForm';
 import { useEffect } from 'react';
 import { ReportSummaryView } from './views/ReportSummaryView';
 import { ThanksForSubmittingView } from './views/thanksForSubmitting';
+import { FooterLogo } from 'components/FooterLogo';
+import { ClientOrganizationLogo } from 'components/ClientOrganizationLogo';
 
 export const ReportPage = () => {
   return (
@@ -41,5 +43,11 @@ const PageContent = () => {
     }
   };
 
-  return <Layout>{renderView()}</Layout>;
+  return (
+    <Layout>
+      <ClientOrganizationLogo size='small' />
+      {renderView()}
+      <FooterLogo />
+    </Layout>
+  );
 };

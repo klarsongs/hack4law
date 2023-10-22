@@ -30,7 +30,6 @@ import { Input } from 'components/Input';
 import { DatePicker } from 'components/DatePicker';
 import { Select } from 'components/Select';
 import { Upload } from 'components/Upload';
-import { OrganizationLogo } from 'components/OrganizationLogo';
 import { Alert } from 'components/Alert';
 
 export const employerRelationshipOptions = [
@@ -58,7 +57,6 @@ export const ReportFormView = () => {
 
   return (
     <>
-      <OrganizationLogo size='small' />
       <Button type='text' icon={<ArrowLeftIcon />} onClick={goToPreviousView}>
         Powrót
       </Button>
