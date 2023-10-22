@@ -4,7 +4,7 @@ import request from '../../utils/request';
 
 export interface SubmitFilesRequest {
   reportId: string;
-  files: FormData[];
+  files: FormData;
 }
 
 export const getCategoriesRequest = () =>
