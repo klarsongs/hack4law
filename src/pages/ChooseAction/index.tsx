@@ -37,9 +37,9 @@ export const ChooseActionPage = () => {
             <LockIcon width={30} />
             <div>
               <Typography.Text style={{ fontSize: 14 }}>
-                Twoje bezpieczeństwo i anonimowość są dla nas priorytetem w
-                Aplikacji ZIGNAL. Zgłaszaj sprawy pewne i w dobrej wierze,
-                wiedząc, że Twój głos jest zawsze chroniony.
+                Be Twoje bezpieczeństwo i anonimowość są dla nas priorytetem.
+                Zgłaszaj sprawy pewne i w dobrej wierze, wiedząc, że Twój głos
+                jest zawsze chroniony.
               </Typography.Text>
             </div>
           </AlertContainer>
@@ -49,23 +49,25 @@ export const ChooseActionPage = () => {
         <Box to='/sygnalizuj'>
           <TalkPencilIcon />
           <Typography.Text
-            style={{ fontSize: 20, marginBottom: 9, fontWeight: 500 }}
+            style={{
+              fontSize: 20,
+              marginBottom: 9,
+              fontWeight: 500,
+            }}
           >
             Zgłoś nową sprawę
-          </Typography.Text>
-          <Typography.Text style={{ color: theme.colors.dark }}>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit lorem ipsum.
           </Typography.Text>
         </Box>
         <Box to='/sprawdz-raport'>
           <FileSearch />
           <Typography.Text
-            style={{ fontSize: 20, marginBottom: 9, fontWeight: 500 }}
+            style={{
+              fontSize: 20,
+              marginBottom: 9,
+              fontWeight: 500,
+            }}
           >
             Sprawdź status sprawy
-          </Typography.Text>
-          <Typography.Text style={{ color: theme.colors.dark }}>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit lorem ipsum.
           </Typography.Text>
         </Box>
       </ActionBox>

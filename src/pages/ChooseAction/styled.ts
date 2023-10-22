@@ -15,6 +15,7 @@ export const AlertContainer = styled.div`
 export const ActionBox = styled.div`
   display: flex;
   gap: 16px;
+  width: 100%;
   margin-top: 24px;
 `;
 
@@ -25,10 +26,11 @@ export const Box = styled(Link)`
   background-color: ${({ theme }) => theme.colors.paleGrayBg};
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 24px;
   cursor: pointer;
   border-radius: 16px;
   text-align: center;
+  width: 50%;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.paleHover};
