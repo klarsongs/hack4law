@@ -13,7 +13,20 @@ import { Typography } from 'components/Typography';
 
 import { File } from 'api/reports/types';
 
-export const ReportSummary = ({ report }: { report: Report }) => {
+interface Props {
+  report: Omit<
+    Report,
+    | 'category'
+    | 'comments'
+    | 'slug'
+    | 'id'
+    | 'created_at'
+    | 'status'
+    | 'organization_id'
+  >;
+}
+
+export const ReportSummary = ({ report }: Props) => {
   function download(url: string, name: string) {
     const a = document.createElement('a');
     a.href = url;

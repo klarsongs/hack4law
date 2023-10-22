@@ -26,11 +26,20 @@ export const Button = styled(AntButton)`
   &.ant-btn-primary {
     background: ${({ theme }) => theme.colors.primary};
     border-radius: 12px;
+    display: flex;
+    gap: 12px;
 
     &:hover {
       && {
         background: ${({ theme }) =>
           color(theme.colors.primary).darken(0.1).toString()};
+      }
+    }
+
+    svg {
+      color: white;
+      path {
+        stroke: white;
       }
     }
   }

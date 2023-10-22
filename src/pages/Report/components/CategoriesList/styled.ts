@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const CategoryOuterContainer = styled.div`
+export const CategoryOuterContainer = styled.div<{ $hasIcon: boolean }>`
   display: grid;
   gap: 16px;
   grid-template-columns: min-content 1fr min-content;
@@ -10,6 +10,14 @@ export const CategoryOuterContainer = styled.div`
   border-radius: 12px;
   padding: 16px 24px;
   background: ${({ theme }) => theme.colors.paleGrayBg};
+
+  ${({ $hasIcon }) =>
+    $hasIcon
+      ? `
+    grid-template-columns: min-content 1fr min-content;
+  `
+      : `
+    grid-template-columns: 1fr min-content;`};
 
   > svg {
     max-width: 32px;

@@ -14,6 +14,7 @@ import { ReactComponent as CheckmarkIcon } from 'assets/checkmarkIcon.svg';
 import { ReactComponent as CrossIcon } from 'assets/crossIcon.svg';
 import { ReactComponent as UploadIcon } from 'assets/uploadIcon.svg';
 import { ReactComponent as PublicIcon } from 'assets/publicIcon.svg';
+import { ReactComponent as ArrowRightIcon } from 'assets/arrowRightIcon.svg';
 import {
   ButtonLikeRadioButton,
   DataWillBeEditable,
@@ -28,7 +29,7 @@ import { DatePicker } from 'components/DatePicker';
 import { Select } from 'components/Select';
 import { Upload } from 'components/Upload';
 
-const employerRelationshipOptions = [
+export const employerRelationshipOptions = [
   { value: 'employee', label: 'Pracownik' },
   { value: 'formerEmployee', label: 'Były pracownik' },
   { value: 'contractor', label: 'Kontraktor' },
@@ -57,18 +58,20 @@ export const ReportFormView = () => {
         Powrót
       </Button>
       <TitleContainer>
-        <Typography.Title level={1}>Zgłoś sprawę</Typography.Title>
+        <Typography.Title level={1} style={{ whiteSpace: 'nowrap' }}>
+          Zgłoś sprawę
+        </Typography.Title>
         <Box
-          title={formState.subcategory.title}
+          title={formState.category!.title}
           label='WYBRANA KATEGORIA'
-          description={formState.subcategory.description}
+          description={formState.subcategory.title}
           icon={<OpenReportIcon />}
           button={
             <Button type='text' onClick={goToPreviousView}>
               Zmień
             </Button>
           }
-          style={{ maxWidth: 400 }}
+          style={{ maxWidth: 450 }}
         />
       </TitleContainer>
       <FormContainer>
@@ -175,7 +178,7 @@ export const ReportFormView = () => {
               $isSelected={!isDifferentPersonInvolved}
               onClick={() => setIsDifferentPersonInvolved(false)}
             >
-              Ja (niem. tak)
+              Ja
             </ButtonLikeRadioButton>
             <ButtonLikeRadioButton
               icon={<OtherPersonIcon />}
@@ -334,22 +337,9 @@ export const ReportFormView = () => {
           onClick={goToNextView}
           style={{ alignSelf: 'flex-end' }}
         >
-          Kontynuuj
+          <span>Kontynuuj</span>
+          <ArrowRightIcon />
         </Button>
-        {/* <Button
-          type='primary'
-          onClick={submitForm}
-          style={{ alignSelf: 'flex-end' }}
-        >
-          Zepsuj bakend
-        </Button> */}
-        {/* <Button
-          type='primary'
-          onClick={sendFiles}
-          style={{ alignSelf: 'flex-end' }}
-        >
-          Wyślij pliki
-        </Button> */}
         <DataWillBeEditable style={{ alignSelf: 'flex-end' }}>
           Będziesz mieć jeszcze możliwość weryfikacji wprowadzonych informacji.
         </DataWillBeEditable>

@@ -9,5 +9,6 @@ export const theme = {
     white: '#ffffff',
     grayMedium: '#6F6F6F',
     paleHover: '#E3EDED',
+    warning: '#D1284740',
   },
 };

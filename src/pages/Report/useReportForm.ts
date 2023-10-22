@@ -42,9 +42,15 @@ export interface ReportFormContextType {
   goToNextView: () => void;
   goToPreviousView: () => void;
   submitForm: () => void;
+  submissionResultSlug: string | null;
 }
 
-export type View = 'category' | 'subcategory' | 'reportForm' | 'reviewForm';
+export type View =
+  | 'category'
+  | 'subcategory'
+  | 'reportForm'
+  | 'reviewForm'
+  | 'thanksForSubmitting';
 
 export const useReportForm = (): ReportFormContextType => {
   const [currentView, setCurrentView] = useState<View>('category');
@@ -63,10 +69,15 @@ export const useReportForm = (): ReportFormContextType => {
     relationship: '',
     files: [],
   });
+  const [submissionResultSlug, setSubmissionResultSlug] = useState<
+    string | null
+  >(null);
 
   const sendFilesMutation = useMutation(submitFiles, {
     onSuccess: (data) => {
       console.log('success!!! pliki poszły i nie ogladaja sie za siebie', data);
+      setCurrentView('thanksForSubmitting');
+      console.log('koniec');
     },
     onError: (err) => {
       console.error('error!!! kto by sie spodziewal', err);
@@ -77,12 +88,13 @@ export const useReportForm = (): ReportFormContextType => {
   const submitFormMutation = useMutation(submitReportFormRequest, {
     onSuccess: (data) => {
       console.log('DATA:', data);
-      if (formState.files && formState.files.length <= 0) {
-        return;
+      if (formState.files && formState.files.length >= 0) {
+        //  @ts-ignore
+        sendFiles(data.data.id);
       }
 
       //  @ts-ignore
-      sendFiles(data.data.id);
+      setSubmissionResultSlug(data.data.slug);
     },
   });
 
@@ -110,6 +122,8 @@ export const useReportForm = (): ReportFormContextType => {
         return 'reportForm';
       } else if (current === 'reportForm') {
         return 'reviewForm';
+      } else if (current === 'reviewForm') {
+        return 'thanksForSubmitting';
       }
       return current;
     });
@@ -123,6 +137,8 @@ export const useReportForm = (): ReportFormContextType => {
         return 'subcategory';
       } else if (current === 'reviewForm') {
         return 'reportForm';
+      } else if (current === 'thanksForSubmitting') {
+        return 'reviewForm';
       }
       return current;
     });
@@ -168,5 +184,6 @@ export const useReportForm = (): ReportFormContextType => {
     goToPreviousView,
     setCurrentView,
     submitForm,
+    submissionResultSlug,
   };
 };
