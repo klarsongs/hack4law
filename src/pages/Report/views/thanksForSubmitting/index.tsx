@@ -12,7 +12,6 @@ import {
   QrCodeWrapper,
 } from './styled';
 import { Button } from 'components/Button';
-import { OrganizationLogo } from 'components/OrganizationLogo';
 import { useNavigate } from 'react-router-dom';
 
 export const ThanksForSubmittingView = () => {
@@ -21,7 +20,6 @@ export const ThanksForSubmittingView = () => {
 
   return (
     <>
-      <OrganizationLogo />
       <Typography.Title level={1}>
         Dziękujemy za przesłanie zgłoszenia!
       </Typography.Title>

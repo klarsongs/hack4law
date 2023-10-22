@@ -2,7 +2,6 @@ import { Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'components/Alert';
 import { Layout } from 'components/Layout';
-import { OrganizationLogo } from 'components/OrganizationLogo';
 import { ReactComponent as LockIcon } from 'assets/lockIcon.svg';
 import { ActionBox, AlertContainer, Box } from './styled';
 import { Button } from 'components/Button';
@@ -11,13 +10,15 @@ import { TokenManager } from 'utils/TokenManager';
 import { ReactComponent as TalkPencilIcon } from 'assets/talkPencil.svg';
 import { ReactComponent as FileSearch } from 'assets/fileSearch.svg';
 import { theme } from 'theme';
+import { FooterLogo } from 'components/FooterLogo';
+import { ClientOrganizationLogo } from 'components/ClientOrganizationLogo';
 
 export const ChooseActionPage = () => {
   const navigate = useNavigate();
 
   return (
     <Layout>
-      <OrganizationLogo />
+      <ClientOrganizationLogo />
       <Button
         type='text'
         icon={<ArrowLeftIcon />}
@@ -68,6 +69,7 @@ export const ChooseActionPage = () => {
           </Typography.Text>
         </Box>
       </ActionBox>
+      <FooterLogo />
     </Layout>
   );
 };

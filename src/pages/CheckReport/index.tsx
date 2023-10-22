@@ -1,7 +1,6 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { useReportsService } from 'api/reports/service';
 import { Layout } from 'components/Layout';
-import { OrganizationLogo } from 'components/OrganizationLogo';
 import { Button } from 'components/Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +12,7 @@ import { Spin, TabsProps } from 'antd';
 import { Tabs } from 'components/Tabs';
 import { DetailsView } from './tabs/DetailsView';
 import { ComunicationView } from './tabs/ComunicationView';
+import { ClientOrganizationLogo } from 'components/ClientOrganizationLogo';
 
 export const CheckReportPage = () => {
   const { id } = useParams();
@@ -40,7 +40,7 @@ export const CheckReportPage = () => {
 
   return (
     <Layout>
-      <OrganizationLogo size='small' />
+      <ClientOrganizationLogo size='small' />
       <Button
         type='text'
         icon={<ArrowLeftIcon />}

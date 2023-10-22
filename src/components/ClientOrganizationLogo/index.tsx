@@ -1,6 +1,6 @@
 import { Container } from './styled';
 
-import Logo from 'assets/logo.svg';
+import clientLogo from 'assets/clientOrganizationLogo.svg';
 
 type OrganizationLogoProps = {
   size?: 'small' | 'big';
@@ -8,14 +8,14 @@ type OrganizationLogoProps = {
   text?: string;
 };
 
-export const OrganizationLogo = ({
+export const ClientOrganizationLogo = ({
   size = 'big',
   style,
 }: OrganizationLogoProps) => {
   return (
     <Container style={style}>
       <img
-        src={Logo as unknown as string}
+        src={clientLogo as unknown as string}
         alt='Logo'
         width={size === 'small' ? '25px' : '42px'}
       />
@@ -25,8 +25,8 @@ export const OrganizationLogo = ({
           fontSize: size === 'small' ? 15 : 24,
         }}
       >
-        <span style={{ fontWeight: 'bold' }}>Wszystko </span>
-        <span>dobrze</span>
+        <span style={{ fontWeight: 'bold' }}>Logo </span>
+        <span>Organizacji</span>
       </span>
     </Container>
   );

@@ -7,7 +7,6 @@ import { useReportFormContext } from 'pages/Report/ReportFormContext';
 import { CategoriesList } from '../../components/CategoriesList';
 import { useResourcesService } from 'api/resources/service';
 import { Spin } from 'antd';
-import { OrganizationLogo } from 'components/OrganizationLogo';
 
 export const CategoryView = () => {
   const navigate = useNavigate();
@@ -35,7 +34,6 @@ export const CategoryView = () => {
 
   return (
     <>
-      <OrganizationLogo />
       <Button
         type='text'
         icon={<ArrowLeftIcon />}
@@ -43,8 +41,8 @@ export const CategoryView = () => {
       >
         Powrót
       </Button>
-      <Typography.Title level={1}>Zgłoś sprawę</Typography.Title>
-      <Typography.Title level={2}>Wybierz kategorię sprawy</Typography.Title>
+      <Typography.Title level={1}>Zgłoś naruszenie</Typography.Title>
+      <Typography.Title level={2}>Wybierz kategorię</Typography.Title>
       {renderData()}
     </>
   );

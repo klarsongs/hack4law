@@ -14,7 +14,6 @@ import { employerRelationshipOptions } from '../ReportFormView';
 import { Button } from 'components/Button';
 import { ReactComponent as ArrowRightIcon } from 'assets/arrowRightIcon.svg';
 import { ReactComponent as ArrowLeftIcon } from 'assets/arrowLeftIcon.svg';
-import { OrganizationLogo } from 'components/OrganizationLogo';
 
 function mapRelationship(relationship: string) {
   return employerRelationshipOptions.find(
@@ -39,7 +38,6 @@ export const ReportSummaryView = () => {
 
   return (
     <>
-      <OrganizationLogo />
       <Button type='text' icon={<ArrowLeftIcon />} onClick={goToPreviousView}>
         Powrót
       </Button>
