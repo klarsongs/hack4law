@@ -10,6 +10,7 @@ export const Input = styled(AntInput)<{
   background: #fff;
   padding: ${({ isBig }) => (isBig ? '16px 22px' : '8px 16px')};
   font-size: 16px;
+  margin-top: ${({ isBig }) => !isBig && '4px'};
 
   ${({ $fullWidth }) =>
     $fullWidth &&

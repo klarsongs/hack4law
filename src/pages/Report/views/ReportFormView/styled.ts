@@ -6,7 +6,7 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 40px;
   margin-top: 24px;
 `;
 

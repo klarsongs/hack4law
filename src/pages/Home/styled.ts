@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { Typography } from 'antd';
 import { Button } from 'components/Button';
 
 import Illustration from 'assets/illustration.svg';

@@ -100,7 +100,7 @@ export const ReportFormView = () => {
           <Label.Text>
             Czy chcesz dokonać zgłoszenia anonimowego, czy podać swoje dane?
           </Label.Text>
-          <RadioButtonsContainer>
+          <RadioButtonsContainer style={{ marginTop: 4 }}>
             <ButtonLikeRadioButton
               icon={<AnonymousIcon />}
               $isSelected={isAnonymous}
@@ -283,7 +283,7 @@ export const ReportFormView = () => {
           <Label.Text>
             Czy naruszenie było już wcześniej gdzieś zgłaszane?
           </Label.Text>
-          <RadioButtonsContainer>
+          <RadioButtonsContainer style={{ marginTop: 4 }}>
             <ButtonLikeRadioButton
               icon={<CrossIcon />}
               $isSelected={!formState.hasBeenAlreadyReported}
