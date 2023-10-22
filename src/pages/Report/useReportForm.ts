@@ -1,9 +1,8 @@
 import { UploadFile } from 'antd';
 import { submitFiles, submitReportFormRequest } from 'api/resources/requests';
-import { useResourcesService } from 'api/resources/service';
 import { Category, Subcategory } from 'api/resources/types';
 import { useState, Dispatch, SetStateAction } from 'react';
-import { UseMutationResult, useMutation } from 'react-query';
+import { useMutation } from 'react-query';
 
 export interface ReportFormFields {
   category: Category | null;
@@ -42,16 +41,11 @@ export interface ReportFormContextType {
   goToNextView: () => void;
   goToPreviousView: () => void;
   submitForm: () => void;
-  sendFiles: () => void;
 }
 
 export type View = 'category' | 'subcategory' | 'reportForm';
 
 export const useReportForm = (): ReportFormContextType => {
-  // const { useSubmitReportForm, useSendFiles } = useResourcesService();
-  // const submitReportForm = useSubmitReportForm();
-  // const sendFilesMutation = useSendFiles();
-
   const [currentView, setCurrentView] = useState<View>('category');
   const [formState, setFormState] = useState<ReportFormFields>({
     category: null,
@@ -85,7 +79,7 @@ export const useReportForm = (): ReportFormContextType => {
         return;
       }
 
-      //   @ts-ignore
+      //  @ts-ignore
       sendFiles(data.data.id);
     },
   });
@@ -153,8 +147,6 @@ export const useReportForm = (): ReportFormContextType => {
 
   const submitForm = () => {
     submitFormMutation.mutate(getReportSubmitForm());
-    // const response = submitReportForm.mutate(getReportSubmitForm());
-    // console.log('response:', response);
   };
 
   return {
@@ -165,7 +157,5 @@ export const useReportForm = (): ReportFormContextType => {
     goToPreviousView,
     setCurrentView,
     submitForm,
-    // @ts-ignore
-    sendFiles,
   };
 };

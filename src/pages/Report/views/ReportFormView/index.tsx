@@ -14,7 +14,6 @@ import { ReactComponent as CheckmarkIcon } from 'assets/checkmarkIcon.svg';
 import { ReactComponent as CrossIcon } from 'assets/crossIcon.svg';
 import { ReactComponent as UploadIcon } from 'assets/uploadIcon.svg';
 import { ReactComponent as PublicIcon } from 'assets/publicIcon.svg';
-import { ReactComponent as ArrowRightIcon } from 'assets/arrowRightIcon.svg';
 import {
   ButtonLikeRadioButton,
   DataWillBeEditable,
@@ -22,8 +21,6 @@ import {
   InputWrapper,
   RadioButtonsContainer,
   TitleContainer,
-  UploadFilesButton,
-  UploadFilesButtonContainer,
 } from './styled';
 import { Label } from 'components/Label';
 import { Input } from 'components/Input';
@@ -53,7 +50,6 @@ export const ReportFormView = () => {
     goToNextView,
     goToPreviousView,
     submitForm,
-    sendFiles,
   } = useReportFormContext();
 
   if (!formState.subcategory) {
@@ -343,13 +339,13 @@ export const ReportFormView = () => {
         >
           Zepsuj bakend
         </Button>
-        <Button
+        {/* <Button
           type='primary'
           onClick={sendFiles}
           style={{ alignSelf: 'flex-end' }}
         >
           Wyślij pliki
-        </Button>
+        </Button> */}
         <DataWillBeEditable style={{ alignSelf: 'flex-end' }}>
           Będziesz mieć jeszcze możliwość weryfikacji wprowadzonych informacji.
         </DataWillBeEditable>
