@@ -93,14 +93,6 @@ export const useReportForm = (): ReportFormContextType => {
   const sendFiles = (reportId: string) => {
     console.log('reportId:', reportId);
     console.log('formState.files:', formState.files);
-    // const files: FormData[] = [];
-
-    // formState.files.forEach((file) => {
-    //   console.log('appending file:', file);
-    //   const formData = new FormData();
-    //   formData.append('files[]', file as any);
-    //   files.push(formData);
-    // });
 
     sendFilesMutation.mutate({
       reportId,
