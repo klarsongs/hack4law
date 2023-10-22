@@ -14,16 +14,14 @@ import { Typography } from 'components/Typography';
 import { File } from 'api/reports/types';
 
 export const ReportSummary = ({ report }: { report: Report }) => {
-  function download(url: string, filename: string) {
-    fetch(url)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
-      })
-      .catch(console.error);
+  function download(url: string, name: string) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   return (
