@@ -24,7 +24,7 @@ export const SubcategoryView = () => {
 
   return (
     <>
-      <OrganizationLogo />
+      <OrganizationLogo size='small' />
       <Button type='text' icon={<ArrowLeftIcon />} onClick={goToPreviousView}>
         Powrót
       </Button>

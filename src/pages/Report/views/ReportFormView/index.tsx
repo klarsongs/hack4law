@@ -55,7 +55,7 @@ export const ReportFormView = () => {
 
   return (
     <>
-      <OrganizationLogo />
+      <OrganizationLogo size='small' />
       <Button type='text' icon={<ArrowLeftIcon />} onClick={goToPreviousView}>
         Powrót
       </Button>

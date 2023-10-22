@@ -13,7 +13,7 @@ export const CategoryView = () => {
   const navigate = useNavigate();
   const { formState, setFormState, goToNextView } = useReportFormContext();
   const { useGetCategories } = useResourcesService();
-  const { data, isLoading, isError } = useGetCategories();
+  const { data, isLoading } = useGetCategories();
 
   const handleCategoryClick = (category: Category) => {
     setFormState({ ...formState, category });
@@ -35,7 +35,7 @@ export const CategoryView = () => {
 
   return (
     <>
-      <OrganizationLogo />
+      <OrganizationLogo size='small' />
       <Button
         type='text'
         icon={<ArrowLeftIcon />}
