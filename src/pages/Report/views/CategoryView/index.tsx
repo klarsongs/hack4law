@@ -7,6 +7,7 @@ import { useReportFormContext } from 'pages/Report/ReportFormContext';
 import { CategoriesList } from '../../components/CategoriesList';
 import { useResourcesService } from 'api/resources/service';
 import { Spin } from 'antd';
+import { OrganizationLogo } from 'components/OrganizationLogo';
 
 export const CategoryView = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export const CategoryView = () => {
 
   return (
     <>
+      <OrganizationLogo />
       <Button
         type='text'
         icon={<ArrowLeftIcon />}

@@ -7,6 +7,7 @@ import { Typography } from 'components/Typography';
 import { TitleContainer } from './styled';
 import { Box } from 'components/Box';
 import { Subcategory } from 'api/resources/types';
+import { OrganizationLogo } from 'components/OrganizationLogo';
 
 export const SubcategoryView = () => {
   const { formState, setFormState, goToPreviousView, goToNextView } =
@@ -23,6 +24,7 @@ export const SubcategoryView = () => {
 
   return (
     <>
+      <OrganizationLogo />
       <Button type='text' icon={<ArrowLeftIcon />} onClick={goToPreviousView}>
         Powrót
       </Button>
