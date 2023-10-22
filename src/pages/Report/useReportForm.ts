@@ -44,7 +44,7 @@ export interface ReportFormContextType {
   submitForm: () => void;
 }
 
-export type View = 'category' | 'subcategory' | 'reportForm';
+export type View = 'category' | 'subcategory' | 'reportForm' | 'reviewForm';
 
 export const useReportForm = (): ReportFormContextType => {
   const [currentView, setCurrentView] = useState<View>('category');
@@ -108,6 +108,8 @@ export const useReportForm = (): ReportFormContextType => {
         return 'subcategory';
       } else if (current === 'subcategory') {
         return 'reportForm';
+      } else if (current === 'reportForm') {
+        return 'reviewForm';
       }
       return current;
     });
@@ -119,6 +121,8 @@ export const useReportForm = (): ReportFormContextType => {
         return 'category';
       } else if (current === 'reportForm') {
         return 'subcategory';
+      } else if (current === 'reviewForm') {
+        return 'reportForm';
       }
       return current;
     });

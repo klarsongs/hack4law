@@ -44,13 +44,8 @@ export const ReportFormView = () => {
   const [isAnonymous, setIsAnonymous] = useState(true);
   const [isDifferentPersonInvolved, setIsDifferentPersonInvolved] =
     useState<PersonInvolved>(false);
-  const {
-    formState,
-    setFormState,
-    goToNextView,
-    goToPreviousView,
-    submitForm,
-  } = useReportFormContext();
+  const { formState, setFormState, goToNextView, goToPreviousView } =
+    useReportFormContext();
 
   if (!formState.subcategory) {
     throw new Error('ReportFormView: subcategory is not defined');
@@ -341,13 +336,13 @@ export const ReportFormView = () => {
         >
           Kontynuuj
         </Button>
-        <Button
+        {/* <Button
           type='primary'
           onClick={submitForm}
           style={{ alignSelf: 'flex-end' }}
         >
           Zepsuj bakend
-        </Button>
+        </Button> */}
         {/* <Button
           type='primary'
           onClick={sendFiles}
