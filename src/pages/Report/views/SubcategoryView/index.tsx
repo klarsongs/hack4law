@@ -7,6 +7,7 @@ import { Typography } from 'components/Typography';
 import { TitleContainer } from './styled';
 import { Box } from 'components/Box';
 import { Subcategory } from 'api/resources/types';
+import { useEffect } from 'react';
 
 export const SubcategoryView = () => {
   const { formState, setFormState, goToPreviousView, goToNextView } =
@@ -20,6 +21,10 @@ export const SubcategoryView = () => {
   if (!formState.category) {
     throw new Error('SubcategoryView: category is not defined');
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

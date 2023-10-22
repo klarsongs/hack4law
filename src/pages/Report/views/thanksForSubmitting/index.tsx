@@ -13,10 +13,15 @@ import {
 } from './styled';
 import { Button } from 'components/Button';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const ThanksForSubmittingView = () => {
   const { submissionResultSlug } = useReportFormContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

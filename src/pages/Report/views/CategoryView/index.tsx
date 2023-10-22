@@ -7,6 +7,7 @@ import { useReportFormContext } from 'pages/Report/ReportFormContext';
 import { CategoriesList } from '../../components/CategoriesList';
 import { useResourcesService } from 'api/resources/service';
 import { Spin } from 'antd';
+import { useEffect } from 'react';
 
 export const CategoryView = () => {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ export const CategoryView = () => {
     setFormState({ ...formState, category });
     goToNextView();
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const renderData = () => {
     if (isLoading || !data) {

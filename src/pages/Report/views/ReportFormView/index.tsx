@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import locale from 'antd/es/date-picker/locale/pl_PL';
 import { Button } from 'components/Button';
 import { useReportFormContext } from 'pages/Report/ReportFormContext';
@@ -50,6 +50,10 @@ export const ReportFormView = () => {
     useState<PersonInvolved>(false);
   const { formState, setFormState, goToNextView, goToPreviousView } =
     useReportFormContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!formState.subcategory) {
     throw new Error('ReportFormView: subcategory is not defined');
