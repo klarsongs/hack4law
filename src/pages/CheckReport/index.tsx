@@ -34,7 +34,7 @@ export const CheckReportPage = () => {
     {
       key: '2',
       label: 'Komunikacja',
-      children: <ComunicationView />,
+      children: <ComunicationView id={report.id} comments={report.comments} />,
     },
   ];
 
