@@ -11,6 +11,18 @@ export const Button = styled(AntButton)`
   align-items: center;
   justify-content: center;
 
+  &.ant-btn-default {
+    border-radius: 12px;
+
+    &:hover {
+      && {
+        background: ${({ theme }) => theme.colors.paleHover};
+        border: 1px solid ${({ theme }) => theme.colors.primary};
+        color: ${({ theme }) => theme.colors.dark};
+      }
+    }
+  }
+
   &.ant-btn-primary {
     background: ${({ theme }) => theme.colors.primary};
     border-radius: 12px;
@@ -31,8 +43,7 @@ export const Button = styled(AntButton)`
     &:hover {
       && {
         color: ${({ theme }) => theme.colors.primary};
-        background: ${({ theme }) =>
-          color(theme.colors.pale).lighten(0.15).toString()};
+        background: ${({ theme }) => theme.colors.paleHover};
       }
     }
   }

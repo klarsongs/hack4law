@@ -10,6 +10,11 @@ import { ReactComponent as AnonymousIcon } from 'assets/anonymousIcon.svg';
 import { ReactComponent as PersonIcon } from 'assets/personIcon.svg';
 import { ReactComponent as OtherPersonIcon } from 'assets/otherPersonIcon.svg';
 import { ReactComponent as AsteriskIcon } from 'assets/asteriskIcon.svg';
+import { ReactComponent as CheckmarkIcon } from 'assets/checkmarkIcon.svg';
+import { ReactComponent as CrossIcon } from 'assets/crossIcon.svg';
+import { ReactComponent as UploadIcon } from 'assets/uploadIcon.svg';
+import { ReactComponent as PublicIcon } from 'assets/publicIcon.svg';
+import { ReactComponent as ArrowRightIcon } from 'assets/arrowRightIcon.svg';
 import {
   ButtonLikeRadioButton,
   DataWillBeEditable,
@@ -17,24 +22,39 @@ import {
   InputWrapper,
   RadioButtonsContainer,
   TitleContainer,
+  UploadFilesButton,
+  UploadFilesButtonContainer,
 } from './styled';
 import { Label } from 'components/Label';
 import { Input } from 'components/Input';
 import { DatePicker } from 'components/DatePicker';
 import { Select } from 'components/Select';
+import { Upload } from 'components/Upload';
 
 const employerRelationshipOptions = [
   { value: 'employee', label: 'Pracownik' },
+  { value: 'formerEmployee', label: 'Były pracownik' },
   { value: 'contractor', label: 'Kontraktor' },
+  { value: 'client', label: 'Kontrahent' },
+  { value: 'provider', label: 'Dostawca' },
+  { value: 'management', label: 'Kierownictwo' },
   { value: 'other', label: 'Inne' },
 ];
+
+type PersonInvolved = false | 'differentPerson' | 'public';
 
 export const ReportFormView = () => {
   const [isAnonymous, setIsAnonymous] = useState(true);
   const [isDifferentPersonInvolved, setIsDifferentPersonInvolved] =
-    useState(false);
-  const { formState, setFormState, goToNextView, goToPreviousView } =
-    useReportFormContext();
+    useState<PersonInvolved>(false);
+  const {
+    formState,
+    setFormState,
+    goToNextView,
+    goToPreviousView,
+    submitForm,
+    sendFiles,
+  } = useReportFormContext();
 
   if (!formState.subcategory) {
     throw new Error('ReportFormView: subcategory is not defined');
@@ -62,9 +82,9 @@ export const ReportFormView = () => {
       </TitleContainer>
       <FormContainer>
         <InputWrapper>
-          <Label>
+          <Label.Text>
             Czy chcesz dokonać zgłoszenia anonimowego, czy podać swoje dane?
-          </Label>
+          </Label.Text>
           <RadioButtonsContainer>
             <ButtonLikeRadioButton
               icon={<AnonymousIcon />}
@@ -83,10 +103,48 @@ export const ReportFormView = () => {
           </RadioButtonsContainer>
         </InputWrapper>
 
+        {!isAnonymous && (
+          <>
+            <InputWrapper>
+              <Label.Text>
+                <AsteriskIcon style={{ color: 'red' }} /> Imię
+              </Label.Text>
+              <Input
+                value={formState.description}
+                onChange={(e) =>
+                  setFormState((state) => ({
+                    ...state,
+                    firstName: e.target.value,
+                  }))
+                }
+                placeholder='Twoje imię'
+                $fullWidth
+              />
+            </InputWrapper>
+
+            <InputWrapper>
+              <Label.Text>
+                <AsteriskIcon style={{ color: 'red' }} /> Nazwisko
+              </Label.Text>
+              <Input
+                value={formState.description}
+                onChange={(e) =>
+                  setFormState((state) => ({
+                    ...state,
+                    lastName: e.target.value,
+                  }))
+                }
+                placeholder='Twoje nazwisko'
+                $fullWidth
+              />
+            </InputWrapper>
+          </>
+        )}
+
         <InputWrapper>
-          <Label>
+          <Label.Text>
             <AsteriskIcon style={{ color: 'red' }} /> Opisz swoje zgłoszenie
-          </Label>
+          </Label.Text>
           <Input
             value={formState.description}
             onChange={(e) =>
@@ -101,19 +159,22 @@ export const ReportFormView = () => {
         </InputWrapper>
 
         <InputWrapper>
-          <Label>
+          <Label.Text>
             <AsteriskIcon style={{ color: 'red' }} /> Data i czas zdarzenia
-          </Label>
+          </Label.Text>
           <DatePicker
             showTime={{ format: 'HH:mm' }}
             locale={locale}
             popupStyle={{ color: 'red' }}
             style={{ width: '100%' }}
+            onChange={(date) =>
+              setFormState((state) => ({ ...state, date: date?.toISOString() }))
+            }
           />
         </InputWrapper>
 
         <InputWrapper>
-          <Label>Kto jest podmiotem zgłoszenia?</Label>
+          <Label.Text>Kto jest podmiotem zgłoszenia?</Label.Text>
           <RadioButtonsContainer>
             <ButtonLikeRadioButton
               icon={<PersonIcon />}
@@ -124,23 +185,33 @@ export const ReportFormView = () => {
             </ButtonLikeRadioButton>
             <ButtonLikeRadioButton
               icon={<OtherPersonIcon />}
-              $isSelected={isDifferentPersonInvolved}
-              onClick={() => setIsDifferentPersonInvolved(true)}
+              $isSelected={isDifferentPersonInvolved === 'differentPerson'}
+              onClick={() => setIsDifferentPersonInvolved('differentPerson')}
             >
-              Inna osoba
+              Innej osoby
+            </ButtonLikeRadioButton>
+            <ButtonLikeRadioButton
+              icon={<PublicIcon />}
+              $isSelected={isDifferentPersonInvolved === 'public'}
+              onClick={() => setIsDifferentPersonInvolved('public')}
+            >
+              Publicznym
             </ButtonLikeRadioButton>
           </RadioButtonsContainer>
         </InputWrapper>
 
         {isDifferentPersonInvolved && (
           <InputWrapper>
-            <Label>Napisz, kto jest podmiotem zgłoszenia</Label>
+            <Label.Text>
+              <AsteriskIcon style={{ color: 'red' }} />
+              &nbsp;Informacje o podmiocie naruszenia
+            </Label.Text>
             <Input
-              value={formState.description}
+              value={formState.personInvolved}
               onChange={(e) =>
                 setFormState((state) => ({
                   ...state,
-                  description: e.target.value,
+                  personInvolved: e.target.value,
                 }))
               }
               placeholder='Podmiot zgłoszenia'
@@ -150,34 +221,112 @@ export const ReportFormView = () => {
         )}
 
         <InputWrapper>
-          <Label>Gdzie miało miejsce zdarzenie?</Label>
+          <Label.Text>Gdzie miało miejsce naruszenie?</Label.Text>
           <Input
-            value={formState.description}
+            value={formState.localization}
             onChange={(e) =>
               setFormState((state) => ({
                 ...state,
-                description: e.target.value,
+                localization: e.target.value,
               }))
             }
-            placeholder='Miejsce zdarzenia'
+            placeholder='Miejsce naruszenia'
             $fullWidth
           />
         </InputWrapper>
 
         <InputWrapper>
-          <Label>Jaka relacja łączy cię z pracodawcą?</Label>
-          <Select options={employerRelationshipOptions} />
-          {/* <Input
-            value={formState.description}
+          <Label.Text>Skąd wiesz o naruszeniu?</Label.Text>
+          <Input
+            value={formState.sourceOfTruth}
             onChange={(e) =>
               setFormState((state) => ({
                 ...state,
-                description: e.target.value,
+                sourceOfTruth: e.target.value,
               }))
             }
-            placeholder='Miejsce zdarzenia'
+            placeholder='Źródło informacji'
             $fullWidth
-          /> */}
+          />
+        </InputWrapper>
+
+        <InputWrapper>
+          <Label.Text>Jaka relacja łączy cię z pracodawcą?</Label.Text>
+          <Select options={employerRelationshipOptions} placeholder='Relacja' />
+        </InputWrapper>
+
+        <InputWrapper>
+          <Label.Text>
+            Czy naruszenie było już wcześniej gdzieś zgłaszane?
+          </Label.Text>
+          <RadioButtonsContainer>
+            <ButtonLikeRadioButton
+              icon={<CrossIcon />}
+              $isSelected={!formState.hasBeenAlreadyReported}
+              onClick={() =>
+                setFormState({ ...formState, hasBeenAlreadyReported: false })
+              }
+            >
+              Nie
+            </ButtonLikeRadioButton>
+            <ButtonLikeRadioButton
+              icon={<CheckmarkIcon />}
+              $isSelected={formState.hasBeenAlreadyReported}
+              onClick={() =>
+                setFormState({ ...formState, hasBeenAlreadyReported: true })
+              }
+            >
+              Tak
+            </ButtonLikeRadioButton>
+          </RadioButtonsContainer>
+        </InputWrapper>
+
+        {formState.hasBeenAlreadyReported && (
+          <InputWrapper>
+            <Label.Text>
+              <AsteriskIcon style={{ color: 'red' }} />
+              &nbsp; Gdzie i kiedy naruszenie było zgłaszane? Jaki był efekt
+              zgłoszenia?
+            </Label.Text>
+            <Input
+              value={formState.additionalInformation}
+              onChange={(e) =>
+                setFormState((state) => ({
+                  ...state,
+                  additionalInformation: e.target.value,
+                }))
+              }
+              placeholder='Dodatkowe informacje'
+              $fullWidth
+            />
+          </InputWrapper>
+        )}
+
+        <InputWrapper style={{ display: 'flex', flexDirection: 'column' }}>
+          <Label.Text>Załączniki</Label.Text>
+          <Upload
+            name='file'
+            multiple
+            beforeUpload={() => false}
+            onChange={(info) => {
+              const { status } = info.file;
+              if (status !== 'uploading') {
+                setFormState((state) => ({
+                  ...state,
+                  files: [...state.files, info.file],
+                }));
+              }
+              if (status === 'done') {
+                console.log(`${info.file.name} file uploaded successfully.`);
+              } else if (status === 'error') {
+                console.log(`${info.file.name} file upload failed.`);
+              }
+            }}
+          >
+            <Button type='default' icon={<UploadIcon />}>
+              Załaduj plik
+            </Button>
+          </Upload>
         </InputWrapper>
 
         <Button
@@ -186,6 +335,20 @@ export const ReportFormView = () => {
           style={{ alignSelf: 'flex-end' }}
         >
           Kontynuuj
+        </Button>
+        <Button
+          type='primary'
+          onClick={submitForm}
+          style={{ alignSelf: 'flex-end' }}
+        >
+          Zepsuj bakend
+        </Button>
+        <Button
+          type='primary'
+          onClick={sendFiles}
+          style={{ alignSelf: 'flex-end' }}
+        >
+          Wyślij pliki
         </Button>
         <DataWillBeEditable style={{ alignSelf: 'flex-end' }}>
           Będziesz mieć jeszcze możliwość weryfikacji wprowadzonych informacji.

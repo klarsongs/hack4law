@@ -37,3 +37,15 @@ span.ant-typography {
   font-size: 14px;
   line-height: 21px;
 }
+
+.ant-select-item:hover {
+  background: #e3eded;
+}
+
+.ant-select-item-option-selected {
+  background: #cee3e3 !important;
+}
+
+.ant-select {
+  height: 45px !important; /* XD */
+}

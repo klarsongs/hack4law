@@ -6,6 +6,8 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 24px;
+  margin-top: 24px;
 `;
 
 export const InputWrapper = styled.div`
@@ -48,4 +50,39 @@ export const ButtonLikeRadioButton = styled(Button)<{ $isSelected: boolean }>`
       background-color: ${theme.colors.pale};
       border: solid 1px ${theme.colors.primary};
     `}
+`;
+
+export const UploadFilesButtonContainer = styled.div`
+  font-size: 16px;
+  padding: 16px 24px;
+  font-weight: 500;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: none;
+  border: solid 1px ${({ theme }) => theme.colors.primary};
+  border-radius: 8px;
+  outline: none;
+`;
+
+export const UploadFilesButton = styled.input`
+  /* display: none; */
+  position: absolute;
+  left: -99999rem;
+  height: 40px;
+
+  /* font-size: 16px;
+  padding: 16px 24px;
+  font-weight: 500;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: none;
+  border: solid 1px ${({ theme }) => theme.colors.primary};
+  border-radius: 8px;
+  outline: none; */
 `;
