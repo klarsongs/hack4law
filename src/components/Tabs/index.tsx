@@ -17,6 +17,13 @@ export const Tabs = styled(AntTabs).attrs({
     color: ${({ theme }) => theme.colors.black};
   }
 
+  &.ant-tabs-top > .ant-tabs-nav::before,
+  &.ant-tabs-bottom > .ant-tabs-nav::before,
+  &.ant-tabs-top > div > .ant-tabs-nav::before,
+  &.ant-tabs-bottom > div > .ant-tabs-nav::before {
+    border-bottom: 0;
+  }
+
   .ant-tabs-tab-active {
     font-weight: 500;
   }

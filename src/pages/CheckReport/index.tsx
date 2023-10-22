@@ -9,7 +9,7 @@ import { ReactComponent as ArrowLeftIcon } from 'assets/arrowLeftIcon.svg';
 import { Typography } from 'components/Typography';
 import { GreyBox } from './styled';
 
-import { TabsProps } from 'antd';
+import { Spin, TabsProps } from 'antd';
 import { Tabs } from 'components/Tabs';
 import { DetailsView } from './tabs/DetailsView';
 import { ComunicationView } from './tabs/ComunicationView';
@@ -20,13 +20,16 @@ export const CheckReportPage = () => {
   const { data, isLoading } = useGetReport(id || '');
   const navigate = useNavigate();
 
+  if (isLoading) return <Spin />;
   if (!data && !isLoading) return <Navigate to='/sprawdz-raport' />;
+
+  const report = data.data;
 
   const items: TabsProps['items'] = [
     {
       key: '1',
       label: 'Detale zgłoszenia',
-      children: <DetailsView />,
+      children: <DetailsView report={report} />,
     },
     {
       key: '2',

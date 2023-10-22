@@ -23,14 +23,16 @@ export const Box = ({
     <BoxContainer style={style}>
       {icon}
       <div>
-        <BoxLabel>{label}</BoxLabel>
-        <Typography.Title level={3} style={{ margin: 0 }}>
+        <BoxLabel style={{ fontWeight: 500 }}>{label}</BoxLabel>
+        <Typography.Title level={3} style={{ margin: 0, fontWeight: 500 }}>
           {title}
         </Typography.Title>
         {description && (
-          <Typography.Text style={{ fontWeight: 300 }}>
-            {description}
-          </Typography.Text>
+          <div style={{ marginTop: 4 }}>
+            <Typography.Text style={{ fontWeight: 300 }}>
+              {description}
+            </Typography.Text>
+          </div>
         )}
       </div>
       {button}
