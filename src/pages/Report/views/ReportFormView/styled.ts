@@ -86,3 +86,14 @@ export const UploadFilesButton = styled.input`
   border-radius: 8px;
   outline: none; */
 `;
+
+export const AlertContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+  }
+`;

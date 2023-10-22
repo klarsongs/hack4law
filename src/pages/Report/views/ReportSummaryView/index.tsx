@@ -15,7 +15,7 @@ import { Button } from 'components/Button';
 import { ReactComponent as ArrowRightIcon } from 'assets/arrowRightIcon.svg';
 import { ReactComponent as ArrowLeftIcon } from 'assets/arrowLeftIcon.svg';
 
-function mapRelationship(relationship: string) {
+export function mapRelationship(relationship: string) {
   return employerRelationshipOptions.find(
     (option) => option.value === relationship,
   )?.label;
@@ -24,16 +24,14 @@ function mapRelationship(relationship: string) {
 export const ReportSummaryView = () => {
   const { formState, goToPreviousView, submitForm } = useReportFormContext();
 
-  function download(url: string, filename: string) {
-    fetch(url)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
-      })
-      .catch(console.error);
+  function download(url: string, name: string) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
   return (

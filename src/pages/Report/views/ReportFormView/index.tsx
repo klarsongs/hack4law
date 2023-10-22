@@ -15,7 +15,9 @@ import { ReactComponent as CrossIcon } from 'assets/crossIcon.svg';
 import { ReactComponent as UploadIcon } from 'assets/uploadIcon.svg';
 import { ReactComponent as PublicIcon } from 'assets/publicIcon.svg';
 import { ReactComponent as ArrowRightIcon } from 'assets/arrowRightIcon.svg';
+import { ReactComponent as InfoIcon } from 'assets/infoIcon.svg';
 import {
+  AlertContainer,
   ButtonLikeRadioButton,
   DataWillBeEditable,
   FormContainer,
@@ -28,6 +30,7 @@ import { Input } from 'components/Input';
 import { DatePicker } from 'components/DatePicker';
 import { Select } from 'components/Select';
 import { Upload } from 'components/Upload';
+import { Alert } from 'components/Alert';
 
 export const employerRelationshipOptions = [
   { value: 'employee', label: 'Pracownik' },
@@ -74,6 +77,22 @@ export const ReportFormView = () => {
           style={{ maxWidth: 450 }}
         />
       </TitleContainer>
+      <Alert
+        style={{ padding: 16, marginTop: 24 }}
+        message={
+          <AlertContainer>
+            <InfoIcon width={45} />
+            <div>
+              <Typography.Text style={{ fontSize: 14 }}>
+                Osoby dokonujące zgłoszenia powinny mieć uzasadnione podstawy,
+                by sądzić, że informacje, które zgłaszają, są prawdziwe i zgodne
+                z rzeczywistością w świetle okoliczności i dostępnych im
+                informacji w momencie dokonywania zgłoszenia.
+              </Typography.Text>
+            </div>
+          </AlertContainer>
+        }
+      />
       <FormContainer>
         <InputWrapper>
           <Label.Text>
